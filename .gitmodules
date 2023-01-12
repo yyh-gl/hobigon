@@ -1,0 +1,6 @@
+[submodule "services/hobigon-api"]
+	path = services/hobigon-api
+	url = git@github.com:yyh-gl/hobigon-golang-api-server.git
+[submodule "services/hobigon-user-box"]
+	path = services/hobigon-user-box
+	url = git@github.com:yyh-gl/hobigon-user-box.git
