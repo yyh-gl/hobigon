@@ -150,8 +150,10 @@ kind: Service
 metadata:
   name: hobigon-api-service
   namespace: hobigon
+  labels:
+    app: hobigon-api
 spec:
-  type: NodePort
+  type: ClusterIP
   selector:
     app: hobigon-api
   ports:
