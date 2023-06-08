@@ -1,5 +1,6 @@
 prometheus:
   prometheusSpec:
+    scrapeInterval: "5s"
 # FIXME: This is not working
 #    serviceMonitorNamespaceSelector:
 #      matchNames:
