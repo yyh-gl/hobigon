@@ -26,7 +26,7 @@
   "fiscalYearStartMonth": 0,
   "gnetId": 10826,
   "graphTooltip": 0,
-  "id": 28,
+  "id": 29,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -56,7 +56,7 @@
             },
             "lineInterpolation": "linear",
             "lineWidth": 1,
-            "pointSize": 5,
+            "pointSize": 1,
             "scaleDistribution": {
               "type": "linear"
             },
@@ -159,7 +159,7 @@
             },
             "lineInterpolation": "linear",
             "lineWidth": 1,
-            "pointSize": 5,
+            "pointSize": 1,
             "scaleDistribution": {
               "type": "linear"
             },
@@ -220,8 +220,8 @@
             "type": "prometheus",
             "uid": "prometheus"
           },
-          "editorMode": "code",
-          "expr": "sum by(method)(rate(http_requests_total[1m]))",
+          "editorMode": "builder",
+          "expr": "sum by(method) (rate(http_requests_total[$__rate_interval]))",
           "format": "time_series",
           "legendFormat": "{{method}}",
           "range": true,
@@ -257,7 +257,7 @@
             },
             "lineInterpolation": "linear",
             "lineWidth": 1,
-            "pointSize": 5,
+            "pointSize": 1,
             "scaleDistribution": {
               "type": "linear"
             },
@@ -318,8 +318,8 @@
             "type": "prometheus",
             "uid": "prometheus"
           },
-          "editorMode": "code",
-          "expr": "sum by(code)(rate(http_requests_total[1m]))",
+          "editorMode": "builder",
+          "expr": "sum by(code) (rate(http_requests_total[$__rate_interval]))",
           "format": "time_series",
           "legendFormat": "{{code}}",
           "range": true,
@@ -370,7 +370,7 @@
             }
           },
           "mappings": [],
-          "noValue": "0",
+          "noValue": "💯 No Error 💯",
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -468,7 +468,7 @@
             }
           },
           "mappings": [],
-          "noValue": "0",
+          "noValue": "💯 No Error 💯",
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -482,7 +482,7 @@
               }
             ]
           },
-          "unit": "percentunit"
+          "unit": "percent"
         },
         "overrides": []
       },
@@ -838,7 +838,7 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": {
-        "type": "datasource",
+        "type": "grafana",
         "uid": "grafana"
       },
       "fieldConfig": {
@@ -874,7 +874,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "9.5.2",
+      "pluginVersion": "9.5.3",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -1001,7 +1001,7 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": {
-        "type": "datasource",
+        "type": "grafana",
         "uid": "grafana"
       },
       "fieldConfig": {
@@ -1037,7 +1037,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "9.5.2",
+      "pluginVersion": "9.5.3",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -1134,7 +1134,7 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": {
-        "type": "datasource",
+        "type": "grafana",
         "uid": "grafana"
       },
       "fieldConfig": {
@@ -1170,7 +1170,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "9.5.2",
+      "pluginVersion": "9.5.3",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -1236,7 +1236,7 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": {
-        "type": "datasource",
+        "type": "grafana",
         "uid": "grafana"
       },
       "fieldConfig": {
@@ -1272,7 +1272,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "9.5.2",
+      "pluginVersion": "9.5.3",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -1328,7 +1328,7 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": {
-        "type": "datasource",
+        "type": "grafana",
         "uid": "grafana"
       },
       "fieldConfig": {
@@ -1366,7 +1366,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "9.1.6",
+      "pluginVersion": "9.5.2",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -1422,7 +1422,7 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": {
-        "type": "datasource",
+        "type": "grafana",
         "uid": "grafana"
       },
       "description": "shows how many heap objects are allocated. This is a counter value so you can use rate() to objects allocated/s.",
@@ -1459,7 +1459,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "9.1.6",
+      "pluginVersion": "9.5.2",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -1515,7 +1515,7 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": {
-        "type": "datasource",
+        "type": "grafana",
         "uid": "grafana"
       },
       "description": "go_memstats_lookups_total – counts how many pointer dereferences happened. This is a counter value so you can use rate() to lookups/s.",
@@ -1552,7 +1552,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "9.1.6",
+      "pluginVersion": "9.5.2",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -1608,7 +1608,7 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": {
-        "type": "datasource",
+        "type": "grafana",
         "uid": "grafana"
       },
       "fieldConfig": {
@@ -1644,7 +1644,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "9.1.6",
+      "pluginVersion": "9.5.2",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -1700,7 +1700,7 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": {
-        "type": "datasource",
+        "type": "grafana",
         "uid": "grafana"
       },
       "fieldConfig": {
@@ -1736,7 +1736,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "9.1.6",
+      "pluginVersion": "9.5.2",
       "pointradius": 1,
       "points": true,
       "renderer": "flot",
@@ -1792,7 +1792,7 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": {
-        "type": "datasource",
+        "type": "grafana",
         "uid": "grafana"
       },
       "fieldConfig": {
@@ -1829,7 +1829,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "9.1.6",
+      "pluginVersion": "9.5.2",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -1898,7 +1898,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "PEB378330B00EADF3"
+          "uid": "prometheus"
         },
         "definition": "label_values(go_goroutines, kubernetes_namespace)",
         "hide": 0,
@@ -1929,7 +1929,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "PEB378330B00EADF3"
+          "uid": "prometheus"
         },
         "definition": "label_values(go_goroutines{kubernetes_namespace=\"$namespace\"}, kubernetes_pod_name)",
         "hide": 0,
@@ -1954,7 +1954,7 @@
     ]
   },
   "time": {
-    "from": "now-5m",
+    "from": "now-1h",
     "to": "now"
   },
   "timepicker": {
@@ -1985,6 +1985,6 @@
   "timezone": "",
   "title": "Metrics",
   "uid": "CgCw8jKZz",
-  "version": 5,
+  "version": 4,
   "weekStart": ""
 }
