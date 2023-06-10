@@ -144,18 +144,3 @@ spec:
                   name: slack-secret
                   key: webhook_url_to_shinsotsu
                   optional: false
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: hobigon-api-service
-  namespace: hobigon
-  labels:
-    app: hobigon-api
-spec:
-  type: ClusterIP
-  selector:
-    app: hobigon-api
-  ports:
-    - port: 3000
-      targetPort: 3000
