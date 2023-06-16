@@ -113,7 +113,7 @@
             "uid": "prometheus"
           },
           "editorMode": "builder",
-          "expr": "sum by(version) (running_version)",
+          "expr": "sum by(version) (running_version{pod=~\"$pod\"})",
           "legendFormat": "{{version}}",
           "range": true,
           "refId": "A"
@@ -221,7 +221,7 @@
             "uid": "prometheus"
           },
           "editorMode": "builder",
-          "expr": "sum by(method) (rate(http_requests_total[$__rate_interval]))",
+          "expr": "sum by(method) (rate(http_requests_total{pod=~\"$pod\"}[$__rate_interval]))",
           "format": "time_series",
           "legendFormat": "{{method}}",
           "range": true,
@@ -319,7 +319,7 @@
             "uid": "prometheus"
           },
           "editorMode": "builder",
-          "expr": "sum by(code) (rate(http_requests_total[$__rate_interval]))",
+          "expr": "sum by(code) (rate(http_requests_total{pod=~\"$pod\"}[$__rate_interval]))",
           "format": "time_series",
           "legendFormat": "{{code}}",
           "range": true,
@@ -416,8 +416,8 @@
             "type": "prometheus",
             "uid": "prometheus"
           },
-          "editorMode": "code",
-          "expr": "sum by(method)(rate(http_requests_total{code=~\"4..\"}[1m]))\n/\nsum by(method)(rate(http_requests_total[1m]))",
+          "editorMode": "builder",
+          "expr": "sum by(method) (rate(http_requests_total{code=~\"4..\", pod=~\"$pod\"}[$__rate_interval])) / sum by(method) (rate(http_requests_total{pod=~\"$pod\"}[$__rate_interval]))",
           "format": "time_series",
           "legendFormat": "{{method}}",
           "range": true,
@@ -514,8 +514,8 @@
             "type": "prometheus",
             "uid": "prometheus"
           },
-          "editorMode": "code",
-          "expr": "sum by(method)(rate(http_requests_total{code=~\"5..\"}[1m]))\n/\nsum by(method)(rate(http_requests_total[1m]))",
+          "editorMode": "builder",
+          "expr": "sum by(method) (rate(http_requests_total{code=~\"5..\", pod=~\"$pod\"}[$__rate_interval])) / sum by(method) (rate(http_requests_total[1m]))",
           "format": "time_series",
           "legendFormat": "{{method}}",
           "range": true,
@@ -613,7 +613,7 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "max by(method) (rate(request_duration_seconds_sum[1m]) / rate(request_duration_seconds_count[1m]))",
+          "expr": "max by(method) (rate(request_duration_seconds_sum{pod=~\"$pod\"}[$__rate_interval]) / rate(request_duration_seconds_count{pod=~\"$pod\"}[$__rate_interval]))",
           "format": "time_series",
           "legendFormat": "{{method}}",
           "range": true,
@@ -710,8 +710,8 @@
             "type": "prometheus",
             "uid": "prometheus"
           },
-          "editorMode": "code",
-          "expr": "max by(method) (histogram_quantile(0.5, rate(request_duration_seconds_bucket[1m])))",
+          "editorMode": "builder",
+          "expr": "max by(method) (histogram_quantile(0.5, rate(request_duration_seconds_bucket{pod=~\"$pod\"}[$__rate_interval])))",
           "format": "time_series",
           "legendFormat": "{{method}}",
           "range": true,
@@ -808,8 +808,8 @@
             "type": "prometheus",
             "uid": "prometheus"
           },
-          "editorMode": "code",
-          "expr": "max by(method) (histogram_quantile(0.9, rate(request_duration_seconds_bucket[1m])))",
+          "editorMode": "builder",
+          "expr": "max by(method) (histogram_quantile(0.9, rate(request_duration_seconds_bucket{pod=~\"$pod\"}[$__rate_interval])))",
           "format": "time_series",
           "legendFormat": "{{method}}",
           "range": true,
@@ -1366,7 +1366,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "9.5.2",
+      "pluginVersion": "9.5.3",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -1459,7 +1459,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "9.5.2",
+      "pluginVersion": "9.5.3",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -1552,7 +1552,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "9.5.2",
+      "pluginVersion": "9.5.3",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -1644,7 +1644,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "9.5.2",
+      "pluginVersion": "9.5.3",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -1736,7 +1736,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "9.5.2",
+      "pluginVersion": "9.5.3",
       "pointradius": 1,
       "points": true,
       "renderer": "flot",
@@ -1829,7 +1829,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "9.5.2",
+      "pluginVersion": "9.5.3",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -1891,61 +1891,33 @@
     "list": [
       {
         "current": {
-          "isNone": true,
-          "selected": false,
-          "text": "None",
-          "value": ""
+          "selected": true,
+          "text": [
+            "All"
+          ],
+          "value": [
+            "$__all"
+          ]
         },
         "datasource": {
           "type": "prometheus",
           "uid": "prometheus"
         },
-        "definition": "label_values(go_goroutines, kubernetes_namespace)",
+        "definition": "label_values(kube_pod_labels,pod)",
         "hide": 0,
-        "includeAll": false,
-        "label": "namespace",
-        "multi": false,
-        "name": "namespace",
-        "options": [],
-        "query": {
-          "query": "label_values(go_goroutines, kubernetes_namespace)",
-          "refId": "Hobigon Prometheus-namespace-Variable-Query"
-        },
-        "refresh": 1,
-        "regex": "",
-        "skipUrlSync": false,
-        "sort": 0,
-        "tagValuesQuery": "",
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
-      },
-      {
-        "current": {
-          "isNone": true,
-          "selected": false,
-          "text": "None",
-          "value": ""
-        },
-        "datasource": {
-          "type": "prometheus",
-          "uid": "prometheus"
-        },
-        "definition": "label_values(go_goroutines{kubernetes_namespace=\"$namespace\"}, kubernetes_pod_name)",
-        "hide": 0,
-        "includeAll": false,
+        "includeAll": true,
         "label": "pod",
-        "multi": false,
+        "multi": true,
         "name": "pod",
         "options": [],
         "query": {
-          "query": "label_values(go_goroutines{kubernetes_namespace=\"$namespace\"}, kubernetes_pod_name)",
-          "refId": "Hobigon Prometheus-pod-Variable-Query"
+          "query": "label_values(kube_pod_labels,pod)",
+          "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
         "refresh": 1,
-        "regex": "",
+        "regex": "/hobigon*/",
         "skipUrlSync": false,
-        "sort": 0,
+        "sort": 1,
         "tagValuesQuery": "",
         "tagsQuery": "",
         "type": "query",
@@ -1985,6 +1957,6 @@
   "timezone": "",
   "title": "Metrics",
   "uid": "CgCw8jKZz",
-  "version": 4,
+  "version": 12,
   "weekStart": ""
 }
