@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: minio
+  namespace: storage
+spec:
+  selector:
+    matchLabels:
+      app: minio
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: minio
+    spec:
+      volumes:
+        - name: storage
+          persistentVolumeClaim:
+            claimName: minio-pv-claim
+      initContainers:
+        - name: create-buckets
+          image: busybox:1.28
+          command:
+            [
+              "sh",
+              "-c",
+              "mkdir -p /storage/grafana-logs-data && mkdir -p /storage/grafana-logs-admin",
+            ]
+          volumeMounts:
+            - name: storage # must match the volume name, above
+              mountPath: "/storage"
+      containers:
+        - name: minio
+          image: minio/minio:latest
+          args:
+            - server
+            - --console-address
+            - :9001
+            - /storage
+          env:
+            - name: MINIO_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: minio-secret
+                  key: minio_access_key
+                  optional: false
+            - name: MINIO_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: minio-secret
+                  key: minio_secret_key
+                  optional: false
+          ports:
+            - containerPort: 9000
+            - containerPort: 9001
+          volumeMounts:
+            - name: storage
+              mountPath: "/storage"
