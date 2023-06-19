@@ -370,7 +370,7 @@
             }
           },
           "mappings": [],
-          "noValue": "💯 No Error 💯",
+          "noValue": "0",
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -468,7 +468,7 @@
             }
           },
           "mappings": [],
-          "noValue": "💯 No Error 💯",
+          "noValue": "0",
           "thresholds": {
             "mode": "absolute",
             "steps": [
@@ -515,7 +515,7 @@
             "uid": "prometheus"
           },
           "editorMode": "builder",
-          "expr": "sum by(method) (rate(http_requests_total{code=~\"5..\", pod=~\"$pod\"}[$__rate_interval])) / sum by(method) (rate(http_requests_total[1m]))",
+          "expr": "sum by(method) (rate(http_requests_total{code=~\"5..\", pod=~\"$pod\"}[$__rate_interval])) / sum by(method) (rate(http_requests_total[$__rate_interval]))",
           "format": "time_series",
           "legendFormat": "{{method}}",
           "range": true,
@@ -571,8 +571,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -669,8 +668,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -767,8 +765,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -1891,13 +1888,9 @@
     "list": [
       {
         "current": {
-          "selected": true,
-          "text": [
-            "All"
-          ],
-          "value": [
-            "$__all"
-          ]
+          "selected": false,
+          "text": "All",
+          "value": "$__all"
         },
         "datasource": {
           "type": "prometheus",
@@ -1957,6 +1950,6 @@
   "timezone": "",
   "title": "Metrics",
   "uid": "CgCw8jKZz",
-  "version": 12,
+  "version": 14,
   "weekStart": ""
 }
