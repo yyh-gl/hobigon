@@ -8,4 +8,3 @@ releases:
     chart: prometheus-community/kube-prometheus-stack
     values:
       - ./values.yaml
-      - ./secret.yaml

@@ -1,10 +1,10 @@
 prometheus:
   prometheusSpec:
     scrapeInterval: "5s"
-# FIXME: This is not working
-#    serviceMonitorNamespaceSelector:
-#      matchNames:
-#        - hobigon
+    # FIXME: This is not working
+    #    serviceMonitorNamespaceSelector:
+    #      matchNames:
+    #        - hobigon
     additionalScrapeConfigs:
       - job_name: 'hobigon-monitor'
         kubernetes_sd_configs:
@@ -21,6 +21,17 @@ prometheus:
           - source_labels:
               - __meta_kubernetes_pod_name
             target_label: pod
+    remoteWrite:
+      - url: https://prometheus-prod-18-prod-ap-southeast-0.grafana.net/api/prom/push
+        basicAuth:
+          username:
+            name: prometheus-secret
+            key: username
+            optional: false
+          password:
+            name: prometheus-secret
+            key: password
+            optional: false
 # FIXME: This is not working
 #  additionalRulesForClusterRole:
 #    - apiGroups: [""]
@@ -39,4 +50,4 @@ prometheus:
 #          interval: "5s"
 
 grafana:
-  defaultDashboardsTimezone: Asia/Tokyo
+  enabled: false
