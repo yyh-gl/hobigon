@@ -26,14 +26,14 @@
   "fiscalYearStartMonth": 0,
   "gnetId": 10826,
   "graphTooltip": 0,
-  "id": 29,
+  "id": 30,
   "links": [],
   "liveNow": false,
   "panels": [
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "b909ac05-f5ab-4b1b-ba05-89775dba3a08"
       },
       "fieldConfig": {
         "defaults": {
@@ -136,7 +136,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "b909ac05-f5ab-4b1b-ba05-89775dba3a08"
       },
       "fieldConfig": {
         "defaults": {
@@ -218,12 +218,13 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "prometheus"
+            "uid": "b909ac05-f5ab-4b1b-ba05-89775dba3a08"
           },
           "editorMode": "builder",
-          "expr": "sum by(method) (rate(http_requests_total{pod=~\"$pod\"}[$__rate_interval]))",
+          "expr": "sum by(method) (rate(http_requests_total{pod=~\"$pod\"}[5m]))",
           "format": "time_series",
           "legendFormat": "{{method}}",
+          "queryType": "range",
           "range": true,
           "refId": "A"
         }
@@ -234,7 +235,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "b909ac05-f5ab-4b1b-ba05-89775dba3a08"
       },
       "fieldConfig": {
         "defaults": {
@@ -318,10 +319,11 @@
             "type": "prometheus",
             "uid": "prometheus"
           },
-          "editorMode": "builder",
-          "expr": "sum by(code) (rate(http_requests_total{pod=~\"$pod\"}[$__rate_interval]))",
+          "editorMode": "code",
+          "expr": "sum by(code) (rate(http_requests_total{pod=~\"$pod\"} [5m]))",
           "format": "time_series",
           "legendFormat": "{{code}}",
+          "queryType": "range",
           "range": true,
           "refId": "A"
         }
@@ -332,7 +334,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "b909ac05-f5ab-4b1b-ba05-89775dba3a08"
       },
       "fieldConfig": {
         "defaults": {
@@ -416,10 +418,11 @@
             "type": "prometheus",
             "uid": "prometheus"
           },
-          "editorMode": "builder",
-          "expr": "sum by(method) (rate(http_requests_total{code=~\"4..\", pod=~\"$pod\"}[$__rate_interval])) / sum by(method) (rate(http_requests_total{pod=~\"$pod\"}[$__rate_interval]))",
+          "editorMode": "code",
+          "expr": "sum by(method) (rate(http_requests_total{code=~\"4..\", pod=~\"$pod\"}[5m])) / sum by(method) (rate(http_requests_total{pod=~\"$pod\"}[5m]))",
           "format": "time_series",
           "legendFormat": "{{method}}",
+          "queryType": "range",
           "range": true,
           "refId": "A"
         }
@@ -430,7 +433,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "b909ac05-f5ab-4b1b-ba05-89775dba3a08"
       },
       "fieldConfig": {
         "defaults": {
@@ -514,10 +517,11 @@
             "type": "prometheus",
             "uid": "prometheus"
           },
-          "editorMode": "builder",
-          "expr": "sum by(method) (rate(http_requests_total{code=~\"5..\", pod=~\"$pod\"}[$__rate_interval])) / sum by(method) (rate(http_requests_total[$__rate_interval]))",
+          "editorMode": "code",
+          "expr": "sum by(method) (rate(http_requests_total{code=~\"5..\", pod=~\"$pod\"}[5m])) / sum by(method) (rate(http_requests_total[5m]))",
           "format": "time_series",
           "legendFormat": "{{method}}",
+          "queryType": "range",
           "range": true,
           "refId": "A"
         }
@@ -528,7 +532,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "b909ac05-f5ab-4b1b-ba05-89775dba3a08"
       },
       "fieldConfig": {
         "defaults": {
@@ -571,7 +575,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -612,9 +617,10 @@
             "uid": "prometheus"
           },
           "editorMode": "code",
-          "expr": "max by(method) (rate(request_duration_seconds_sum{pod=~\"$pod\"}[$__rate_interval]) / rate(request_duration_seconds_count{pod=~\"$pod\"}[$__rate_interval]))",
+          "expr": "max by(method) (rate(request_duration_seconds_sum{pod=~\"$pod\"}[5m]) / rate(request_duration_seconds_count{pod=~\"$pod\"}[5m]))",
           "format": "time_series",
           "legendFormat": "{{method}}",
+          "queryType": "range",
           "range": true,
           "refId": "A"
         }
@@ -625,7 +631,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "b909ac05-f5ab-4b1b-ba05-89775dba3a08"
       },
       "fieldConfig": {
         "defaults": {
@@ -668,7 +674,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -708,10 +715,11 @@
             "type": "prometheus",
             "uid": "prometheus"
           },
-          "editorMode": "builder",
-          "expr": "max by(method) (histogram_quantile(0.5, rate(request_duration_seconds_bucket{pod=~\"$pod\"}[$__rate_interval])))",
+          "editorMode": "code",
+          "expr": "max by(method) (histogram_quantile(0.5, rate(request_duration_seconds_bucket{pod=~\"$pod\"}[5m])))",
           "format": "time_series",
           "legendFormat": "{{method}}",
+          "queryType": "range",
           "range": true,
           "refId": "A"
         }
@@ -722,7 +730,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "prometheus"
+        "uid": "b909ac05-f5ab-4b1b-ba05-89775dba3a08"
       },
       "fieldConfig": {
         "defaults": {
@@ -765,7 +773,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -805,10 +814,11 @@
             "type": "prometheus",
             "uid": "prometheus"
           },
-          "editorMode": "builder",
-          "expr": "max by(method) (histogram_quantile(0.9, rate(request_duration_seconds_bucket{pod=~\"$pod\"}[$__rate_interval])))",
+          "editorMode": "code",
+          "expr": "max by(method) (histogram_quantile(0.9, rate(request_duration_seconds_bucket{pod=~\"$pod\"}[5m])))",
           "format": "time_series",
           "legendFormat": "{{method}}",
+          "queryType": "range",
           "range": true,
           "refId": "A"
         }
@@ -1888,13 +1898,17 @@
     "list": [
       {
         "current": {
-          "selected": false,
-          "text": "All",
-          "value": "$__all"
+          "selected": true,
+          "text": [
+            "All"
+          ],
+          "value": [
+            "$__all"
+          ]
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "prometheus"
+          "uid": "b909ac05-f5ab-4b1b-ba05-89775dba3a08"
         },
         "definition": "label_values(kube_pod_labels,pod)",
         "hide": 0,
@@ -1950,6 +1964,6 @@
   "timezone": "",
   "title": "Metrics",
   "uid": "CgCw8jKZz",
-  "version": 14,
+  "version": 2,
   "weekStart": ""
 }
