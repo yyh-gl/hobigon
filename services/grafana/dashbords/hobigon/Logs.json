@@ -20,111 +20,90 @@
   "fiscalYearStartMonth": 0,
   "gnetId": 13186,
   "graphTooltip": 0,
-  "id": 31,
+  "id": 30,
   "links": [],
   "liveNow": false,
   "panels": [
     {
-      "aliasColors": {},
-      "bars": true,
-      "dashLength": 10,
-      "dashes": false,
       "datasource": {
         "type": "loki",
-        "uid": "b7c2c716-e0fd-46a3-aabb-4f0e957a9b98"
+        "uid": "ea0d88b8-c1bf-4d3d-b6f6-9ad2fc544cbf"
       },
       "fieldConfig": {
         "defaults": {
-          "links": []
+          "color": {
+            "mode": "thresholds"
+          },
+          "custom": {
+            "align": "auto",
+            "cellOptions": {
+              "type": "auto"
+            },
+            "inspect": false
+          },
+          "links": [],
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
         },
         "overrides": []
       },
-      "fill": 1,
-      "fillGradient": 0,
       "gridPos": {
-        "h": 3,
+        "h": 7,
         "w": 24,
         "x": 0,
         "y": 0
       },
-      "hiddenSeries": false,
       "id": 6,
-      "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": false,
-        "total": false,
-        "values": false
-      },
-      "lines": false,
-      "linewidth": 1,
-      "nullPointMode": "null",
       "options": {
-        "alertThreshold": true
+        "cellHeight": "sm",
+        "footer": {
+          "countRows": false,
+          "fields": "",
+          "reducer": [
+            "sum"
+          ],
+          "show": false
+        },
+        "showHeader": true
       },
-      "percentage": false,
       "pluginVersion": "9.5.3",
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
       "targets": [
         {
           "datasource": {
             "type": "loki",
-            "uid": "b7c2c716-e0fd-46a3-aabb-4f0e957a9b98"
+            "uid": "ea0d88b8-c1bf-4d3d-b6f6-9ad2fc544cbf"
           },
           "editorMode": "builder",
-          "expr": "sum(count_over_time({namespace=\"$namespace\"} |~ `$search` [$__interval]))",
+          "expr": "{namespace=~\"$namespace\", app=~\"$app\", level=~\"$level\", trace_id=~\"$trace_id\"}",
           "queryType": "range",
           "refId": "A"
         }
       ],
-      "thresholds": [],
-      "timeRegions": [],
       "title": "Timeline",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "mode": "time",
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "short",
-          "logBase": 1,
-          "show": false
-        },
-        {
-          "format": "short",
-          "logBase": 1,
-          "show": false
-        }
-      ],
-      "yaxis": {
-        "align": false
-      }
+      "type": "table"
     },
     {
       "datasource": {
         "type": "loki",
-        "uid": "b7c2c716-e0fd-46a3-aabb-4f0e957a9b98"
+        "uid": "ea0d88b8-c1bf-4d3d-b6f6-9ad2fc544cbf"
       },
       "gridPos": {
         "h": 25,
         "w": 24,
         "x": 0,
-        "y": 3
+        "y": 7
       },
       "id": 2,
       "maxDataPoints": "",
@@ -142,10 +121,10 @@
         {
           "datasource": {
             "type": "loki",
-            "uid": "b7c2c716-e0fd-46a3-aabb-4f0e957a9b98"
+            "uid": "ea0d88b8-c1bf-4d3d-b6f6-9ad2fc544cbf"
           },
           "editorMode": "builder",
-          "expr": "{namespace=\"$namespace\"} |~ `$search`",
+          "expr": "{namespace=~\"$namespace\", app=~\"$app\", level=~\"$level\", trace_id=~\"$trace_id\"}",
           "queryType": "range",
           "refId": "A"
         }
@@ -154,56 +133,143 @@
       "type": "logs"
     }
   ],
-  "refresh": "",
+  "refresh": "30s",
   "schemaVersion": 38,
   "style": "dark",
   "tags": [],
   "templating": {
     "list": [
       {
+        "allValue": ".+",
         "current": {
-          "selected": false,
-          "text": "hobigon",
-          "value": "hobigon"
+          "selected": true,
+          "text": [
+            "All"
+          ],
+          "value": [
+            "$__all"
+          ]
         },
         "datasource": {
-          "type": "prometheus",
-          "uid": "b909ac05-f5ab-4b1b-ba05-89775dba3a08"
+          "type": "loki",
+          "uid": "ea0d88b8-c1bf-4d3d-b6f6-9ad2fc544cbf"
         },
-        "definition": "label_values(kube_pod_info, namespace)",
+        "definition": "",
         "hide": 0,
-        "includeAll": false,
-        "multi": false,
+        "includeAll": true,
+        "multi": true,
         "name": "namespace",
         "options": [],
-        "query": "label_values(kube_pod_info, namespace)",
+        "query": {
+          "label": "namespace",
+          "refId": "LokiVariableQueryEditor-VariableQuery",
+          "stream": "",
+          "type": 1
+        },
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
         "sort": 0,
-        "tagValuesQuery": "",
-        "tagsQuery": "",
-        "type": "query",
-        "useTags": false
+        "type": "query"
       },
       {
+        "allValue": ".+",
         "current": {
-          "selected": false,
-          "text": "",
-          "value": ""
+          "selected": true,
+          "text": [
+            "All"
+          ],
+          "value": [
+            "$__all"
+          ]
         },
+        "datasource": {
+          "type": "loki",
+          "uid": "ea0d88b8-c1bf-4d3d-b6f6-9ad2fc544cbf"
+        },
+        "definition": "",
         "hide": 0,
-        "name": "search",
-        "options": [
-          {
-            "selected": true,
-            "text": "",
-            "value": ""
-          }
-        ],
-        "query": "",
+        "includeAll": true,
+        "multi": true,
+        "name": "app",
+        "options": [],
+        "query": {
+          "label": "app",
+          "refId": "LokiVariableQueryEditor-VariableQuery",
+          "stream": "",
+          "type": 1
+        },
+        "refresh": 1,
+        "regex": "",
         "skipUrlSync": false,
-        "type": "textbox"
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "allValue": ".+",
+        "current": {
+          "selected": true,
+          "text": [
+            "All"
+          ],
+          "value": [
+            "$__all"
+          ]
+        },
+        "datasource": {
+          "type": "loki",
+          "uid": "ea0d88b8-c1bf-4d3d-b6f6-9ad2fc544cbf"
+        },
+        "definition": "",
+        "hide": 0,
+        "includeAll": true,
+        "multi": true,
+        "name": "level",
+        "options": [],
+        "query": {
+          "label": "level",
+          "refId": "LokiVariableQueryEditor-VariableQuery",
+          "stream": "",
+          "type": 1
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      },
+      {
+        "allValue": ".+",
+        "current": {
+          "selected": true,
+          "text": [
+            "All"
+          ],
+          "value": [
+            "$__all"
+          ]
+        },
+        "datasource": {
+          "type": "loki",
+          "uid": "ea0d88b8-c1bf-4d3d-b6f6-9ad2fc544cbf"
+        },
+        "definition": "",
+        "hide": 0,
+        "includeAll": true,
+        "multi": true,
+        "name": "trace_id",
+        "options": [],
+        "query": {
+          "label": "trace_id",
+          "refId": "LokiVariableQueryEditor-VariableQuery",
+          "stream": "",
+          "type": 1
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
       }
     ]
   },
@@ -227,6 +293,6 @@
   "timezone": "",
   "title": "Logs",
   "uid": "liz0yRCZz",
-  "version": 4,
+  "version": 21,
   "weekStart": ""
 }
