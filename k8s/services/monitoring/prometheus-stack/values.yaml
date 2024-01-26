@@ -40,3 +40,6 @@ prometheus:
 
 grafana:
   defaultDashboardsTimezone: Asia/Tokyo
+  grafana.ini:
+    server:
+      root_url: https://monitoring.yyh-gl.dev
