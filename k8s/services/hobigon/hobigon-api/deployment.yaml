@@ -126,6 +126,12 @@ spec:
                   name: slack-secret
                   key: webhook_url_to_02
                   optional: false
+            - name: WEBHOOK_URL_TO_03
+              valueFrom:
+                secretKeyRef:
+                  name: slack-secret
+                  key: webhook_url_to_03
+                  optional: false
             - name: WEBHOOK_URL_TO_50
               valueFrom:
                 secretKeyRef:
