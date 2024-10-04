@@ -1,0 +1,152 @@
+{
+  "apiVersion": 1,
+  "groups": [
+    {
+      "orgId": 1,
+      "name": "Hobigon API",
+      "folder": "Hobigon",
+      "interval": "5m",
+      "rules": [
+        {
+          "uid": "c805980c-f113-42b6-83e6-7e0d73a2e20b",
+          "title": "Hobigon API - Duration 50%ile",
+          "condition": "A",
+          "data": [
+            {
+              "refId": "A",
+              "relativeTimeRange": {
+                "from": 3600,
+                "to": 0
+              },
+              "datasourceUid": "b7f17a6e-b61e-4737-8e8d-4de48dffbf5d",
+              "model": {
+                "datasource": {
+                  "type": "prometheus",
+                  "uid": "b7f17a6e-b61e-4737-8e8d-4de48dffbf5d"
+                },
+                "disableTextWrap": false,
+                "editorMode": "builder",
+                "expr": "histogram_quantile(0.5, rate(request_duration_seconds_bucket{job=\"hobigon-api-service\"}[5m]))",
+                "fullMetaSearch": false,
+                "includeNullMetadata": true,
+                "instant": false,
+                "interval": "",
+                "intervalMs": 15000,
+                "maxDataPoints": 43200,
+                "range": true,
+                "refId": "A",
+                "useBackend": false
+              }
+            },
+            {
+              "refId": "B",
+              "relativeTimeRange": {
+                "from": 3600,
+                "to": 0
+              },
+              "datasourceUid": "__expr__",
+              "model": {
+                "conditions": [
+                  {
+                    "evaluator": {
+                      "params": [
+                        0,
+                        0
+                      ],
+                      "type": "gt"
+                    },
+                    "operator": {
+                      "type": "and"
+                    },
+                    "query": {
+                      "params": []
+                    },
+                    "reducer": {
+                      "params": [],
+                      "type": "avg"
+                    },
+                    "type": "query"
+                  }
+                ],
+                "datasource": {
+                  "name": "Expression",
+                  "type": "__expr__",
+                  "uid": "__expr__"
+                },
+                "expression": "A",
+                "intervalMs": 1000,
+                "maxDataPoints": 43200,
+                "reducer": "last",
+                "refId": "B",
+                "settings": {
+                  "mode": "replaceNN",
+                  "replaceWithValue": 0
+                },
+                "type": "reduce"
+              }
+            },
+            {
+              "refId": "C",
+              "relativeTimeRange": {
+                "from": 3600,
+                "to": 0
+              },
+              "datasourceUid": "__expr__",
+              "model": {
+                "conditions": [
+                  {
+                    "evaluator": {
+                      "params": [
+                        0.5,
+                        0
+                      ],
+                      "type": "gt"
+                    },
+                    "operator": {
+                      "type": "and"
+                    },
+                    "query": {
+                      "params": []
+                    },
+                    "reducer": {
+                      "params": [],
+                      "type": "avg"
+                    },
+                    "type": "query"
+                  }
+                ],
+                "datasource": {
+                  "name": "Expression",
+                  "type": "__expr__",
+                  "uid": "__expr__"
+                },
+                "expression": "B",
+                "intervalMs": 1000,
+                "maxDataPoints": 43200,
+                "refId": "C",
+                "type": "threshold"
+              }
+            }
+          ],
+          "dasboardUid": "CgCw8jKZz",
+          "panelId": 39,
+          "noDataState": "NoData",
+          "execErrState": "Error",
+          "for": "5m",
+          "annotations": {
+            "__dashboardUid__": "CgCw8jKZz",
+            "__panelId__": "39",
+            "description": "",
+            "runbook_url": "",
+            "summary": ""
+          },
+          "labels": {
+            "": "",
+            "app": "hobigon-api"
+          },
+          "isPaused": false
+        }
+      ]
+    }
+  ]
+}
