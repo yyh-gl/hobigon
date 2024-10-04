@@ -26,7 +26,7 @@
                 },
                 "disableTextWrap": false,
                 "editorMode": "builder",
-                "expr": "histogram_quantile(0.5, rate(request_duration_seconds_bucket{job=\"hobigon-api-service\"}[5m]))",
+                "expr": "max by(method) (histogram_quantile(0.5, rate(request_duration_seconds_bucket{job=\"hobigon-api-service\"}[5m])))",
                 "fullMetaSearch": false,
                 "includeNullMetadata": true,
                 "instant": false,
@@ -100,7 +100,7 @@
                         0.5,
                         0
                       ],
-                      "type": "gt"
+                      "type": "lt"
                     },
                     "operator": {
                       "type": "and"
@@ -130,7 +130,7 @@
           ],
           "dasboardUid": "CgCw8jKZz",
           "panelId": 39,
-          "noDataState": "NoData",
+          "noDataState": "OK",
           "execErrState": "Error",
           "for": "5m",
           "annotations": {
