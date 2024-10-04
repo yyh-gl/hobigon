@@ -10,7 +10,7 @@
         {
           "uid": "c805980c-f113-42b6-83e6-7e0d73a2e20b",
           "title": "Hobigon API - Duration 50%ile",
-          "condition": "A",
+          "condition": "C",
           "data": [
             {
               "refId": "A",
@@ -100,7 +100,7 @@
                         0.5,
                         0
                       ],
-                      "type": "lt"
+                      "type": "gt"
                     },
                     "operator": {
                       "type": "and"
