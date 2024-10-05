@@ -1,5 +1,8 @@
 prometheus:
   prometheusSpec:
+    resources:
+      requests:
+        memory: "128Mi"
     scrapeInterval: "1m"
     # FIXME: This is not working
     #    serviceMonitorNamespaceSelector:
