@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gatling-deployment
+  labels:
+    app: gatling
+  namespace: hobigon
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: gatling
+  template:
+    metadata:
+      labels:
+        app: gatling
+      namespace: hobigon
+    spec:
+      containers:
+        - name: gatling
+          image: ghcr.io/yyh-gl/gatling
+          env:
+            - name: DEBUG
+              value: "false"
+            - name: TARGET_URL
+              valueFrom:
+                secretKeyRef:
+                  name: gatling-secret
+                  key: target-url
+                  optional: false
