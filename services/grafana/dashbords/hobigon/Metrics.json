@@ -33,7 +33,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "b5c7c76b-b41e-4ae8-9f3a-f7018db7bf9b"
+        "uid": "f4f583f5-723b-4a7e-bec0-aa4616cc12a1"
       },
       "fieldConfig": {
         "defaults": {
@@ -41,7 +41,6 @@
             "mode": "palette-classic"
           },
           "custom": {
-            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
@@ -55,7 +54,6 @@
               "tooltip": false,
               "viz": false
             },
-            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 1,
@@ -112,10 +110,10 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "b5c7c76b-b41e-4ae8-9f3a-f7018db7bf9b"
+            "uid": "f4f583f5-723b-4a7e-bec0-aa4616cc12a1"
           },
-          "editorMode": "code",
-          "expr": "sum by(version) (running_version{pod=~\"$pod\"})",
+          "editorMode": "builder",
+          "expr": "sum by(version, job) (running_version{pod=~\"$pod\"})",
           "range": true,
           "refId": "A"
         }
@@ -137,7 +135,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "b5c7c76b-b41e-4ae8-9f3a-f7018db7bf9b"
+        "uid": "f4f583f5-723b-4a7e-bec0-aa4616cc12a1"
       },
       "fieldConfig": {
         "defaults": {
@@ -145,7 +143,6 @@
             "mode": "palette-classic"
           },
           "custom": {
-            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
@@ -159,7 +156,6 @@
               "tooltip": false,
               "viz": false
             },
-            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 1,
@@ -221,7 +217,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "b5c7c76b-b41e-4ae8-9f3a-f7018db7bf9b"
+            "uid": "f4f583f5-723b-4a7e-bec0-aa4616cc12a1"
           },
           "editorMode": "code",
           "expr": "sum by(method) (rate(http_requests_total{pod=~\"$pod\", method=~\"$method\", path=~\"$path\"}[5m]))",
@@ -235,7 +231,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "b5c7c76b-b41e-4ae8-9f3a-f7018db7bf9b"
+        "uid": "f4f583f5-723b-4a7e-bec0-aa4616cc12a1"
       },
       "fieldConfig": {
         "defaults": {
@@ -243,7 +239,6 @@
             "mode": "palette-classic"
           },
           "custom": {
-            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
@@ -257,7 +252,6 @@
               "tooltip": false,
               "viz": false
             },
-            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 1,
@@ -319,7 +313,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "b5c7c76b-b41e-4ae8-9f3a-f7018db7bf9b"
+            "uid": "f4f583f5-723b-4a7e-bec0-aa4616cc12a1"
           },
           "editorMode": "code",
           "expr": "sum by(code) (rate(http_requests_total{pod=~\"$pod\", method=~\"$method\", path=~\"$path\"} [5m]))",
@@ -333,7 +327,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "b5c7c76b-b41e-4ae8-9f3a-f7018db7bf9b"
+        "uid": "f4f583f5-723b-4a7e-bec0-aa4616cc12a1"
       },
       "fieldConfig": {
         "defaults": {
@@ -341,7 +335,6 @@
             "mode": "palette-classic"
           },
           "custom": {
-            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
@@ -356,7 +349,6 @@
               "tooltip": false,
               "viz": false
             },
-            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -418,7 +410,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "b5c7c76b-b41e-4ae8-9f3a-f7018db7bf9b"
+            "uid": "f4f583f5-723b-4a7e-bec0-aa4616cc12a1"
           },
           "editorMode": "code",
           "expr": "sum by(method) (rate(http_requests_total{code=~\"4..\", pod=~\"$pod\", method=~\"$method\", path=~\"$path\"}[5m])) / sum by(method) (rate(http_requests_total{pod=~\"$pod\", method=~\"$method\", path=~\"$path\"}[5m]))",
@@ -432,7 +424,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "b5c7c76b-b41e-4ae8-9f3a-f7018db7bf9b"
+        "uid": "f4f583f5-723b-4a7e-bec0-aa4616cc12a1"
       },
       "fieldConfig": {
         "defaults": {
@@ -440,7 +432,6 @@
             "mode": "palette-classic"
           },
           "custom": {
-            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
@@ -455,7 +446,6 @@
               "tooltip": false,
               "viz": false
             },
-            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 0,
@@ -517,7 +507,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "b5c7c76b-b41e-4ae8-9f3a-f7018db7bf9b"
+            "uid": "f4f583f5-723b-4a7e-bec0-aa4616cc12a1"
           },
           "editorMode": "code",
           "expr": "sum by(method) (rate(http_requests_total{code=~\"5..\", pod=~\"$pod\", method=~\"$method\", path=~\"$path\"}[5m])) / sum by(method) (rate(http_requests_total{pod=~\"$pod\", method=~\"$method\", path=~\"$path\"}[5m]))",
@@ -531,7 +521,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "b5c7c76b-b41e-4ae8-9f3a-f7018db7bf9b"
+        "uid": "f4f583f5-723b-4a7e-bec0-aa4616cc12a1"
       },
       "fieldConfig": {
         "defaults": {
@@ -539,7 +529,6 @@
             "mode": "palette-classic"
           },
           "custom": {
-            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
@@ -553,7 +542,6 @@
               "tooltip": false,
               "viz": false
             },
-            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -581,7 +569,7 @@
               },
               {
                 "color": "red",
-                "value": 1.0
+                "value": 1
               }
             ]
           },
@@ -615,7 +603,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "b5c7c76b-b41e-4ae8-9f3a-f7018db7bf9b"
+            "uid": "f4f583f5-723b-4a7e-bec0-aa4616cc12a1"
           },
           "editorMode": "code",
           "expr": "max by(method) (rate(request_duration_seconds_sum{pod=~\"$pod\", method=~\"$method\"}[5m]) / rate(request_duration_seconds_count{pod=~\"$pod\", method=~\"$method\"}[5m]))",
@@ -629,7 +617,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "b5c7c76b-b41e-4ae8-9f3a-f7018db7bf9b"
+        "uid": "f4f583f5-723b-4a7e-bec0-aa4616cc12a1"
       },
       "fieldConfig": {
         "defaults": {
@@ -637,7 +625,6 @@
             "mode": "palette-classic"
           },
           "custom": {
-            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
@@ -651,7 +638,6 @@
               "tooltip": false,
               "viz": false
             },
-            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -713,9 +699,9 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "b5c7c76b-b41e-4ae8-9f3a-f7018db7bf9b"
+            "uid": "f4f583f5-723b-4a7e-bec0-aa4616cc12a1"
           },
-          "editorMode": "builder",
+          "editorMode": "code",
           "expr": "max by(method) (histogram_quantile(0.5, rate(request_duration_seconds_bucket{pod=~\"$pod\", method=~\"$method\"}[5m])))",
           "range": true,
           "refId": "A"
@@ -727,7 +713,7 @@
     {
       "datasource": {
         "type": "prometheus",
-        "uid": "b5c7c76b-b41e-4ae8-9f3a-f7018db7bf9b"
+        "uid": "f4f583f5-723b-4a7e-bec0-aa4616cc12a1"
       },
       "fieldConfig": {
         "defaults": {
@@ -735,7 +721,6 @@
             "mode": "palette-classic"
           },
           "custom": {
-            "axisBorderShow": false,
             "axisCenteredZero": false,
             "axisColorMode": "text",
             "axisLabel": "",
@@ -749,7 +734,6 @@
               "tooltip": false,
               "viz": false
             },
-            "insertNulls": false,
             "lineInterpolation": "linear",
             "lineWidth": 1,
             "pointSize": 5,
@@ -811,7 +795,7 @@
         {
           "datasource": {
             "type": "prometheus",
-            "uid": "b5c7c76b-b41e-4ae8-9f3a-f7018db7bf9b"
+            "uid": "f4f583f5-723b-4a7e-bec0-aa4616cc12a1"
           },
           "editorMode": "code",
           "expr": "max by(method) (histogram_quantile(0.9, rate(request_duration_seconds_bucket{pod=~\"$pod\", method=~\"$method\"}[5m])))",
@@ -880,8 +864,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -1048,8 +1031,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -1186,8 +1168,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -1293,8 +1274,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -1390,8 +1370,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -1488,8 +1467,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -1586,8 +1564,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -1683,8 +1660,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -1780,8 +1756,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -1877,8 +1852,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -1932,7 +1906,8 @@
     }
   ],
   "refresh": "30s",
-  "schemaVersion": 39,
+  "schemaVersion": 38,
+  "style": "dark",
   "tags": [
     "go",
     "backend"
@@ -1950,6 +1925,10 @@
             "$__all"
           ]
         },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "f4f583f5-723b-4a7e-bec0-aa4616cc12a1"
+        },
         "definition": "label_values(pod)",
         "hide": 0,
         "includeAll": true,
@@ -1963,7 +1942,7 @@
           "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
         "refresh": 1,
-        "regex": "/hobigon*/",
+        "regex": "/^gatling|hobigon.*-deployment-.+$/",
         "skipUrlSync": false,
         "sort": 1,
         "tagValuesQuery": "",
@@ -1974,13 +1953,17 @@
       {
         "allValue": ".+",
         "current": {
-          "selected": true,
+          "selected": false,
           "text": [
             "All"
           ],
           "value": [
             "$__all"
           ]
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "f4f583f5-723b-4a7e-bec0-aa4616cc12a1"
         },
         "definition": "label_values(method)",
         "hide": 0,
@@ -2002,13 +1985,17 @@
       {
         "allValue": ".+",
         "current": {
-          "selected": true,
+          "selected": false,
           "text": [
             "All"
           ],
           "value": [
             "$__all"
           ]
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "f4f583f5-723b-4a7e-bec0-aa4616cc12a1"
         },
         "definition": "label_values(path)",
         "hide": 0,
@@ -2030,7 +2017,7 @@
     ]
   },
   "time": {
-    "from": "now-1h",
+    "from": "now-30m",
     "to": "now"
   },
   "timepicker": {
@@ -2061,6 +2048,6 @@
   "timezone": "",
   "title": "Metrics",
   "uid": "CgCw8jKZz",
-  "version": 8,
+  "version": 9,
   "weekStart": ""
 }
