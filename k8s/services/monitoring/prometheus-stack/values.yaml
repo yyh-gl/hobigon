@@ -16,7 +16,7 @@ prometheus:
           - source_labels:
               - __meta_kubernetes_namespace
               - __meta_kubernetes_pod_container_port_number
-            regex: hobigon;3000
+            regex: hobigon;(3000|9090)
             action: keep
           - source_labels:
               - __meta_kubernetes_service_name
