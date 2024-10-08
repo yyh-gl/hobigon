@@ -26,16 +26,12 @@
   "fiscalYearStartMonth": 0,
   "gnetId": 10826,
   "graphTooltip": 0,
-  "id": 30,
+  "id": 31,
   "links": [],
   "liveNow": false,
   "panels": [
     {
-      "datasource": {
-        "default": true,
-        "type": "prometheus",
-        "uid": "ae065dhonk5j4e"
-      },
+      "datasource": {},
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -116,10 +112,14 @@
             "type": "prometheus",
             "uid": "f4f583f5-723b-4a7e-bec0-aa4616cc12a1"
           },
+          "disableTextWrap": false,
           "editorMode": "builder",
           "expr": "sum by(version, job) (running_version{pod=~\"$pod\"})",
+          "fullMetaSearch": false,
+          "includeNullMetadata": true,
           "range": true,
-          "refId": "A"
+          "refId": "A",
+          "useBackend": false
         }
       ],
       "title": "Running version",
@@ -568,11 +568,12 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
-                "value": 1
+                "value": 0.3
               }
             ]
           },
@@ -663,7 +664,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -758,11 +760,12 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
-                "value": 0.5
+                "value": 1
               }
             ]
           },
@@ -1926,7 +1929,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "ae065dhonk5j4e"
+          "uid": "ee09eh95xhj40c"
         },
         "definition": "label_values(pod)",
         "hide": 0,
@@ -1958,7 +1961,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "ae065dhonk5j4e"
+          "uid": "ee09eh95xhj40c"
         },
         "definition": "label_values(method)",
         "hide": 0,
@@ -1989,7 +1992,7 @@
         },
         "datasource": {
           "type": "prometheus",
-          "uid": "ae065dhonk5j4e"
+          "uid": "ee09eh95xhj40c"
         },
         "definition": "label_values(path)",
         "hide": 0,
@@ -2042,6 +2045,6 @@
   "timezone": "",
   "title": "Metrics",
   "uid": "CgCw8jKZz",
-  "version": 4,
+  "version": 5,
   "weekStart": ""
 }
