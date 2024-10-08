@@ -46,3 +46,12 @@ grafana:
   grafana.ini:
     server:
       root_url: https://monitoring.yyh-gl.dev
+  persistence:
+    enabled: true
+    type: sts
+    storageClassName: local-storage
+    accessModes:
+      - ReadWriteOnce
+    size: 3Gi
+    finalizers:
+      - kubernetes.io/pvc-protection
