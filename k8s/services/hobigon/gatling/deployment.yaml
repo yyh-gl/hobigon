@@ -6,7 +6,7 @@ metadata:
     app: gatling
   namespace: hobigon
 spec:
-  replicas: 5
+  replicas: 10
   selector:
     matchLabels:
       app: gatling
@@ -19,6 +19,8 @@ spec:
       containers:
         - name: gatling
           image: ghcr.io/yyh-gl/gatling
+          ports:
+            - containerPort: 9090
           env:
             - name: DEBUG
               value: "false"
