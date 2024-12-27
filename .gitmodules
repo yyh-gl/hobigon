@@ -4,3 +4,6 @@
 [submodule "services/hobigon-user-box"]
 	path = services/hobigon-user-box
 	url = git@github.com:yyh-gl/hobigon-user-box.git
+[submodule "services/gatling"]
+	path = services/gatling
+	url = git@github.com:yyh-gl/gatling.git
