@@ -6,7 +6,7 @@ metadata:
     app: hobigon-user-box
   namespace: hobigon
 spec:
-  replicas: 2
+  replicas: 0
   selector:
     matchLabels:
       app: hobigon-user-box
