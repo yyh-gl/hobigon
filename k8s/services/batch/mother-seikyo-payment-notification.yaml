@@ -1,0 +1,38 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: mother-seikyo-payment-notification
+  namespace: batch
+spec:
+  # 毎月1日, 15日 9, 12時（JST）
+  schedule: 0 0,3 1,15 * *
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: mother-seikyo-payment-notification
+              image: alpine/curl
+              env:
+                - name: LINE_CHANNEL_ACCESS_TOKEN
+                  valueFrom:
+                    secretKeyRef:
+                      name: batch-secret
+                      key: line-channel-access-token-of-son-bot
+                      optional: false
+              command:
+                - /bin/sh
+                - -c
+                - |
+                  curl -v -X POST https://api.line.me/v2/bot/message/broadcast \
+                    -H 'Content-Type: application/json' \
+                    -H "Authorization: Bearer $LINE_CHANNEL_ACCESS_TOKEN" \
+                    -d '{
+                      "messages":[
+                        {
+                          "type": "text",
+                          "text": "今日は生協に入金する日"
+                        }
+                      ]
+                    }'
+          restartPolicy: OnFailure

@@ -1,0 +1,20 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: pokemon-event-notification
+  namespace: batch
+spec:
+  # 毎日 12時（JST）
+  schedule: 0 3 * * *
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: pokemon-event-notification
+              image: alpine/curl
+              command:
+                - /bin/sh
+                - -c
+                - curl -X POST http://hobigon-api-service.hobigon.svc.cluster.local:3000/api/v1/notifications/slack/pokemon/events
+          restartPolicy: OnFailure

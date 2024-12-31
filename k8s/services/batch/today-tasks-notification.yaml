@@ -1,0 +1,20 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: today-tasks-notification
+  namespace: batch
+spec:
+  # 毎日 7, 13, 19時（JST）
+  schedule: 0 4,10,22 * * *
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: today-tasks-notification
+              image: alpine/curl
+              command:
+                - /bin/sh
+                - -c
+                - curl -X POST http://hobigon-api-service.hobigon.svc.cluster.local:3000/api/v1/notifications/slack/tasks/today
+          restartPolicy: OnFailure
