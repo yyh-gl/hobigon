@@ -5,7 +5,7 @@ metadata:
   namespace: batch
 spec:
   # 毎日 7, 13, 19時（JST）
-  schedule: 0 4,10,22 * * *
+  schedule: 0 22,4,10 * * *
   jobTemplate:
     spec:
       template:
