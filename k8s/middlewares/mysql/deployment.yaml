@@ -18,6 +18,12 @@ spec:
         - image:
             mysql:9
           name: mysql
+          resources:
+            requests:
+              cpu: 100m
+              memory: 1Gi
+            limits:
+              memory: 1Gi
           env:
             - name: MYSQL_ROOT_PASSWORD
               valueFrom:

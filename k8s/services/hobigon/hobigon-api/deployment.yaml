@@ -24,6 +24,12 @@ spec:
       containers:
         - name: hobigon-api
           image: ghcr.io/yyh-gl/hobigon-golang-api-server/rest
+          resources:
+            requests:
+              cpu: 100m
+              memory: 100Mi
+            limits:
+              memory: 100Mi
           ports:
             - containerPort: 3000
           readinessProbe:

@@ -24,6 +24,12 @@ spec:
       containers:
         - name: hobigon-user-box
           image: ghcr.io/yyh-gl/hobigon-user-box
+          resources:
+            requests:
+              cpu: 100m
+              memory: 100Mi
+            limits:
+              memory: 100Mi
           ports:
             - containerPort: 8080
           readinessProbe:

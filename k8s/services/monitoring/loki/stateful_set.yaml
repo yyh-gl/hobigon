@@ -53,7 +53,6 @@ spec:
               mountPath: /etc/loki
             - name: storage
               mountPath: "/data"
-              subPath:
           ports:
             - name: http-metrics
               containerPort: 3100
@@ -76,12 +75,12 @@ spec:
             initialDelaySeconds: 45
           resources:
             requests:
-              memory: "1.5Gi"
+              cpu: 100m
+              memory: 1Gi
             limits:
-              memory: "2Gi"
+              memory: 1Gi
           securityContext:
             readOnlyRootFilesystem: true
-          env:
       nodeSelector:
         { }
       affinity:

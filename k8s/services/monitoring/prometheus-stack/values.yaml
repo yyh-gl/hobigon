@@ -2,8 +2,11 @@ prometheus:
   prometheusSpec:
     resources:
       requests:
-        memory: "128Mi"
-    scrapeInterval: "1m"
+        cpu: 200m
+        memory: 200Mi
+      limits:
+        memory: 200Mi
+    scrapeInterval: 1m
 
 grafana:
   defaultDashboardsTimezone: Asia/Tokyo
