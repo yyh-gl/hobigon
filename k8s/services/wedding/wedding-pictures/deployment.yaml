@@ -1,0 +1,91 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wedding-pictures-deployment
+  labels:
+    app: wedding-pictures
+  namespace: wedding
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: wedding-pictures
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 2
+      maxUnavailable: 50%
+  template:
+    metadata:
+      labels:
+        app: wedding-pictures
+    spec:
+      containers:
+        - name: wedding-pictures
+          image: ghcr.io/yyh-gl/wedding-pictures/server:latest
+          resources:
+            requests:
+              cpu: 100m
+              memory: 100Mi
+            limits:
+              memory: 100Mi
+          ports:
+            - containerPort: 8080
+          readinessProbe:
+            httpGet:
+              port: 8080
+              path: /health
+            periodSeconds: 5
+          env:
+            - name: APP_ENV
+              value: "production"
+            - name: LOG_PATH
+              value: "/tmp"
+            - name: LINE_CHANNEL_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: line-channel-secret
+                  key: secret
+                  optional: false
+            - name: LINE_CHANNEL_ACCESS_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: line-channel-secret
+                  key: access-token
+                  optional: false
+            - name: SUPABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: supabase-secret
+                  key: url
+                  optional: false
+            - name: SUPABASE_SERVICE_ROLE_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: supabase-secret
+                  key: service-role-key
+                  optional: false
+            - name: AWS_REGION
+              valueFrom:
+                secretKeyRef:
+                  name: aws-secret
+                  key: region
+                  optional: false
+            - name: AWS_S3_BUCKET
+              valueFrom:
+                secretKeyRef:
+                  name: aws-secret
+                  key: s3-bucket
+                  optional: false
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: aws-secret
+                  key: access-key-id
+                  optional: false
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: aws-secret
+                  key: secret-access-key
+                  optional: false
