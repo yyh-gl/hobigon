@@ -4,8 +4,8 @@ metadata:
   name: mother-seikyo-payment-notification
   namespace: batch
 spec:
-  # 毎月1日, 15日 9, 12時（JST）
-  schedule: 0 0,3 1,15 * *
+  # 毎月1日, 5日, 15日, 25日 9, 12時（JST）
+  schedule: 0 0,3 1,5,15,25 * *
   jobTemplate:
     spec:
       template:
