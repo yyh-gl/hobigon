@@ -1,0 +1,8 @@
+# このファイルをコピーして terraform.tfvars を作成し、実際の値を設定してください。
+# terraform.tfvars は .gitignore 済みでGit管理されません。
+project = "your-gcp-project-id"
+region  = "asia-northeast1"
+
+# LINE Messaging APIのチャネルアクセストークン（hobigon-cli-coop用）。
+# Secret Managerの初期バージョンとしてTerraformが登録する。
+line_channel_access_token = "your-line-channel-access-token"
