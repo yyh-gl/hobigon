@@ -72,6 +72,16 @@ variable "secret_values" {
   description = "secret_idをキーとした初期バージョンの値。初期作成後の値変更はignore_changesで無視するため、ローテーションはgcloud等で行う"
 }
 
+variable "existing_secrets" {
+  type = list(object({
+    env_name  = string
+    secret_id = string
+    version   = optional(string, "latest")
+  }))
+  default     = []
+  description = "他のJobが作成済みのSecret Managerシークレットを参照して環境変数に注入する一覧。secretsと異なりSecret Managerリソースは作成しない"
+}
+
 variable "plain_env" {
   type = list(object({
     name  = string

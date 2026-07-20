@@ -56,6 +56,19 @@ resource "google_cloud_run_v2_job" "this" {
         }
 
         dynamic "env" {
+          for_each = var.existing_secrets
+          content {
+            name = env.value.env_name
+            value_source {
+              secret_key_ref {
+                secret  = env.value.secret_id
+                version = env.value.version
+              }
+            }
+          }
+        }
+
+        dynamic "env" {
           for_each = var.plain_env
           content {
             name  = env.value.name
@@ -64,8 +77,8 @@ resource "google_cloud_run_v2_job" "this" {
         }
       }
 
-      max_retries = var.max_retries
-      timeout     = "${var.timeout_seconds}s"
+      max_retries     = var.max_retries
+      timeout         = "${var.timeout_seconds}s"
       service_account = var.service_account_email
     }
   }

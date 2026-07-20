@@ -3,6 +3,22 @@
 project = "your-gcp-project-id"
 region  = "asia-northeast1"
 
-# LINE Messaging APIのチャネルアクセストークン（hobigon-cli-coop用）。
+# LINE Messaging APIのチャネルアクセストークン（hobigon-cli-coop用。hobigon-cli-seisenkanも同じシークレットを参照する）。
 # Secret Managerの初期バージョンとしてTerraformが登録する。
 line_channel_access_token = "your-line-channel-access-token"
+
+# Slack Webhook URL（hobigon-cli-pokemon用）。
+# Secret Managerの初期バージョンとしてTerraformが登録する。
+webhook_url_to_03 = "your-slack-webhook-url"
+
+# Notion APIトークン（hobigon-cli-todo用）。
+# Secret Managerの初期バージョンとしてTerraformが登録する。
+notion_api_token = "your-notion-api-token"
+
+# NotionデータベースID（hobigon-cli-todo用）。
+# Secret Managerの初期バージョンとしてTerraformが登録する。
+notion_database_id = "your-notion-database-id"
+
+# Slack Webhook URL（hobigon-cli-todo用）。
+# Secret Managerの初期バージョンとしてTerraformが登録する。
+webhook_url_to_00 = "your-slack-webhook-url"
