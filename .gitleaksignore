@@ -1,0 +1,5 @@
+# k8s/services/monitoring/promtail/setup.sh: Grafana CloudのログエンドポイントURLで、APIキーではない
+0a1e841ea42e17080bc84661fcddf08eb41d8525:k8s/services/monitoring/promtail/setup.sh:generic-api-key:2
+
+# k8s/services/monitoring/loki/loki.yaml: Loki自体の設定値で、実際のシークレットではない
+17bf2e540c4e11ee65d4a84bb4372b80e0932991:k8s/services/monitoring/loki/loki.yaml:kubernetes-secret-yaml:32
