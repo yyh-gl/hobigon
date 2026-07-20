@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nenga-atena-deployment
+  labels:
+    app: nenga-atena
+  namespace: hobigon
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: nenga-atena
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 2
+      maxUnavailable: 50%
+  template:
+    metadata:
+      labels:
+        app: nenga-atena
+      namespace: hobigon
+    spec:
+      containers:
+        - name: nenga-atena
+          image: ghcr.io/yyh-gl/nenga-atena
+          resources:
+            requests:
+              cpu: 100m
+              memory: 100Mi
+            limits:
+              memory: 100Mi
+          ports:
+            - containerPort: 5173
+          readinessProbe:
+            httpGet:
+              port: 5173
+              path: /
+            periodSeconds: 5

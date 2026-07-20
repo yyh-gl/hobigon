@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: nenga-atena-service
+  namespace: hobigon
+  labels:
+    app: nenga-atena
+spec:
+  type: ClusterIP
+  selector:
+    app: nenga-atena
+  ports:
+    - port: 5173
+      targetPort: 5173
