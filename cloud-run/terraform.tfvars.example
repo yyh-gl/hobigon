@@ -5,7 +5,7 @@ region  = "asia-northeast1"
 
 # LINE Messaging APIのチャネルアクセストークン（hobigon-cli-coop用。hobigon-cli-seisenkanも同じシークレットを参照する）。
 # Secret Managerの初期バージョンとしてTerraformが登録する。
-line_channel_access_token = "your-line-channel-access-token"
+son_line_bot_channel_access_token = "your-line-channel-access-token"
 
 # Slack Webhook URL（hobigon-cli-pokemon用）。
 # Secret Managerの初期バージョンとしてTerraformが登録する。

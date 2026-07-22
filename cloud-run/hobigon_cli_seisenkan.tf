@@ -17,12 +17,12 @@ module "hobigon_cli_seisenkan" {
   service_account_email = google_service_account.batch_notifier.email
   deletion_protection   = var.deletion_protection
 
-  # LINE_CHANNEL_ACCESS_TOKENはhobigon-cli-coopと同一のLINE公式アカウントのトークンを共用するため、
+  # SON_LINE_BOT_CHANNEL_ACCESS_TOKENはhobigon-cli-coopと同一のLINE公式アカウントのトークンを共用するため、
   # 新規作成せずhobigon-cli-coopが作成済みのシークレットを参照する。
   existing_secrets = [
     {
-      env_name  = "LINE_CHANNEL_ACCESS_TOKEN"
-      secret_id = module.hobigon_cli_coop.secret_ids["LINE_CHANNEL_ACCESS_TOKEN"]
+      env_name  = "SON_LINE_BOT_CHANNEL_ACCESS_TOKEN"
+      secret_id = module.hobigon_cli_coop.secret_ids["SON_LINE_BOT_CHANNEL_ACCESS_TOKEN"]
     }
   ]
 

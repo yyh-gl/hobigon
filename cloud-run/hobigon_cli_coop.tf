@@ -19,13 +19,13 @@ module "hobigon_cli_coop" {
 
   secrets = [
     {
-      env_name  = "LINE_CHANNEL_ACCESS_TOKEN"
-      secret_id = "LINE_CHANNEL_ACCESS_TOKEN"
+      env_name  = "SON_LINE_BOT_CHANNEL_ACCESS_TOKEN"
+      secret_id = "SON_LINE_BOT_CHANNEL_ACCESS_TOKEN"
     }
   ]
 
   secret_values = {
-    LINE_CHANNEL_ACCESS_TOKEN = var.line_channel_access_token
+    SON_LINE_BOT_CHANNEL_ACCESS_TOKEN = var.son_line_bot_channel_access_token
   }
 
   schedule  = "0 9,12 1,5,15,25 * *"
