@@ -6,8 +6,8 @@ module "hobigon_cli_seisenkan" {
   location = var.region
 
   job_name = "hobigon-cli-seisenkan"
-  image    = "ghcr.io/yyh-gl/hobigon-golang-api-server/cli:v2.1.0"
-  args     = ["notify-seisenkan-payment-reminder"]
+  image    = "ghcr.io/yyh-gl/hobigon-golang-api-server/cli:v3.0.0"
+  args     = ["notify-to-line --bot-key=son --message-key=seisenkan"]
 
   cpu             = "1000m"
   memory          = "512Mi"

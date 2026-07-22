@@ -6,7 +6,7 @@ module "hobigon_cli_todo" {
   location = var.region
 
   job_name = "hobigon-cli-todo"
-  image    = "ghcr.io/yyh-gl/hobigon-golang-api-server/cli:v2.1.0"
+  image    = "ghcr.io/yyh-gl/hobigon-golang-api-server/cli:v3.0.0"
   args     = ["notify-today-tasks"]
 
   cpu             = "1000m"
